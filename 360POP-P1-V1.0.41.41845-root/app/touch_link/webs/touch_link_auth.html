@@ -1,0 +1,139 @@
+<!doctype html>
+<!--[if lt IE 7 ]>
+<html class="ie6" lang="zh-cn"><![endif]-->
+<!--[if IE 7 ]>
+<html class="ie7" lang="zh-cn"><![endif]-->
+<!--[if IE 8 ]>
+<html class="ie8" lang="zh-cn"><![endif]-->
+<!--[if IE 9 ]>
+<html class="ie9" lang="zh-cn"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="w3c"><!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <title>360安全路由</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/default.css"/>
+    <style type="text/css">
+        body {
+            min-width: 320px;
+        }
+
+        header {
+            background-color: #326ac2;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            color: #FFFFFF;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .content {
+            color: #333333;
+            font-size: 16px;
+            line-height: 24px;
+            padding: 50px 5% 65px;
+            text-align: center;
+        }
+
+        .auto-img {
+            text-align: center;
+            margin: 42px 0 48px;
+        }
+
+        .auto-img > img {
+            width: 85%;
+            max-width: 733px;
+            max-height: 433px;
+        }
+
+        footer {
+            width: 100%;
+        }
+
+        footer > .auth-status-sec {
+            width: 270px;
+            margin: 0 auto;
+            color: #FFFFFF;
+            border-radius: 45px;
+            background-color: #999999;
+            height: 41px;
+            line-height: 41px;
+            text-align: center;
+        }
+
+        footer > .auth-status-sec.auth_success {
+            background-color: #326ac2;
+        }
+    </style>
+
+</head>
+<body>
+<header>360安全路由温馨提示</header>
+<section class="content">
+    <p style="font-size: 16px;color: #333333">您已接入摩擦网络，距离你上网只有一步之遥</p>
+
+    <div class="auto-img"><img src="/images/touch_auth.png"></div>
+    <p style="font-size: 16px;color: #333333">将您的手机靠近路由器10cm等待计时的灰色按钮变为蓝色即可正常上网</p>
+</section>
+<footer>
+    <div class="auth-status-sec"><span id="auth_status">请等待...</span></div>
+</footer>
+<script type="text/javascript" src="/javascript/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+    !(function () {
+        var statusLoopId = null, mac, count = 0, auth_status = false,_url;
+
+        function init_status() {
+            getCurMac();
+            get_device_status();
+        }
+
+        function getCurMac() {
+            var postValue = window.location.search.substr(1).split("&");
+            for (var s = 0; s < postValue.length; s++) {
+                if (postValue[s].split("=")[0] == "pcmac") {
+                    mac = (postValue[s].split("=")[1]).toLowerCase();
+                }
+                if (postValue[s].substr(0, 3) == "url") {
+                    _url = postValue[s].substr(4);
+                }
+            }
+        }
+
+        function get_device_status() {
+            if (auth_status) return;
+            count++;
+            var calleeFn = arguments.callee;
+            $.post("/app/touch_link/webs/ql_get_list.cgi", function (res) {
+                res = eval("("+ res +")");
+                if (res.err_no == "0" && res["data"].length != 0) {
+                    var list = res.data;
+                    var len = list.length;
+                    for (var i = 0; i < len; i++) {
+                        if (list[i].mode == 2 && list[i].mac.toLowerCase() === mac) {
+                            clearTimeout(statusLoopId);
+                            auth_status = true;
+                            $(".auth-status-sec").addClass("auth_success").find("#auth_status").html("认证成功");
+                            setTimeout(function(){
+                                window.location.href = _url;
+                            },2000);
+                            return;
+                        }
+                    }
+                    statusLoopId = setTimeout(calleeFn, 2000);
+                }
+            });
+        }
+
+        init_status();
+    })();
+</script>
+</body>
+</html>

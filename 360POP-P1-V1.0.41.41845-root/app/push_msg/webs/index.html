@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link rel="stylesheet" type="text/css" href="/app_common/style.css" />
+    <script type="text/javascript" src="/app_common/init.js"></script>
+ 
+   <link rel="stylesheet" type="text/css" href="/app_common/app_ctrl/css/default.css" />
+    <script type="text/javascript" src="/javascript/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/javascript/err.js"></script>
+    <script type="text/javascript" src="/app_common/app_ctrl/js/app_lib.js"></script>
+    <style type="text/css"></style>
+</head>
+<body>
+<form name="url_form" method="post" action="" onsubmit="submitUrlInfo();return false;">
+    <dl class="formstyle">
+        <dd >
+            <p style="color: red ">
+                您好！
+                <br>
+                请在以下输入框中输入正确的URL地址：
+            </p>
+        </dd>
+        <dd>
+            <label class="font-indent5">状态：</label>
+            <input type="radio" name="status" value="1" checked onchange="change_status_value(this.value);return false;" id="status_1" /><label  for="status_1" class="inline">启用</label>
+            <input type="radio" name="status"  value="0" onchange="change_status_value(this.value);return false;" id="status_0" /><label  for="status_0" class="inline">关闭</label>
+            <input type="hidden" value="1" id="status" />
+        </dd>
+        <dd>
+            <label class="font-indent4">url地址：</label>
+            <input type="text" id="url" onfocus="add_length()" onblur="split_length()" onkeyup="change()" style="width: 10em" />
+        </dd>
+        <dd class="formstyle_btn">
+            <button id="save_button"   type="submit" onclick="submitUrlInfo();return false;" >提交</button>
+            <button id="cancel_button" style="margin-left: 1em"  onclick="submit_url_cancel();return false;" >取消</button>
+        </dd>
+    </dl>
+</form>
+<script type="text/javascript" src="js/url.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+v1.3 
+1 用户组增加有线端口1-5组。
+2 增加dump_host_alive
+3 增加/app/"app_sign"/webs/tmp目录，不用输入路由器密码。
+
+
+0.0.4
+1 修改host_info结构体，增加magic成员
+2 修改nlk_if_msg结构体，增加ip/mask/gw，以及offline。
+3 增加接口register_user_group_by_mac
+4 增加接口replace_user_group_by_mac
+5 增加接口get_if_stat
+6 增加接口register_user_group
+7 增加接口replace_user_group
+8 修改register_url_group 与 replace_url_group接口中url参数,从值32为宏URL_NAME_LEN
+9 取消WEB认证组，并修改PPPOE、PPTP、L2TP用户组的值定义
+10 增加主机上下线通知时传递MAC，结构体为nlk_host_msg
+11 增加接口http_ctrl_skip
+12 增加接口register_cgi/unregister_cgi
+13 http_ctrl_action支持CLEAN了
+14 register_http_ctrl增加支持HTTP_CTRL_TYPE_JS_HTML
+15 增加接口register_rate_limit/unregister_rate_limit
+16 增加接口register_route_policy/unregister_route_policy
+17 修改register_acl_filter接口
+

@@ -1,0 +1,46 @@
+*{ margin:0; padding:0; color:#fff;}
+body{ margin:0; padding:0; background:#E3E5D1 url('../images/bg.gif'); font-size:10px; font-family: "微软雅黑",Tahoma,Verdana,Arial,Helvetica,sans-serif;}
+h2{ margin:0;padding:0;}
+p{ margin:0; padding:0;}
+form{ margin:0; padding:0;}
+#box_wrap{ padding-top:10%;}
+#box{ width:62%; max-width:790px; _width:790px; margin:0 auto; background:#70756E url('../images/bottom_left.gif') no-repeat left bottom;}
+#box_outer{ background:url('../images/bottom_right.gif') no-repeat right bottom; padding-bottom:2%;}
+#box_inner{ background:url('../images/top_left.gif') no-repeat left top;}
+#box h2{ background:url('../images/top_right.gif') no-repeat right top;}
+#title{font-size:2.1em;}
+#border_wrap{ padding:35px 0 10px;margin:0 18px 10px; overflow:hidden;}
+#border{ position:relative; zoom:1; overflow:hidden; border-bottom:1px dotted #80847C; width:95%; margin:0 auto;}
+.icon{ background:url('../images/icon.gif') no-repeat 0% 80%; float:left; display:inline; width:28px; height:30px; margin:0 10px;}
+.word{ float:left; text-shadow:0 1px 0 #203139; color:#fff; display:block; width:80%; overflow:hidden;}
+#nos_content_layer{ padding:0 45px 18px; font-size:1.4em;}
+#nos_bulletin_layer{ padding:0 45px 18px; font-size:1.4em;}
+#nos_return_btn_layer{ padding:15px 0;}
+#nos_net_auth{padding-top:12px; font-size:1.4em;  padding:0 18px 22px;}
+#nos_net_auth .text_wrap{ padding-bottom:12px; zoom:1; overflow:hidden;}
+#nos_net_auth .txt{ padding:2px 1px; color:#333;}
+.label_block{ width:70px; text-align:right; float:left; display:block; line-height:25px;}
+
+.nos_button {
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+	*display: inline;
+	vertical-align: baseline;
+	margin: 0 2px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	color: #70756E;
+	text-shadow: 0 1px 0 #fff;
+	border: solid 1px #b7b7b7;
+	background: #E3E5D1;
+}

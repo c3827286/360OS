@@ -1,0 +1,63 @@
+<style>
+    .btn{
+        line-height: 30px\9;/* IE8 and below */
+    }
+</style>
+<div id="virtual_div">
+    <div class="frame_list_layer app-box" id="virtual-list">
+        <div class="box-bd">
+            <table class="data-table" id="virtual_service_list"></table>
+            <div id="no_device" style="display: none;width: 100%;text-align: center"></div>
+            <div class="opt" style="margin-top: 100px;">
+                <button class="btn" id="new_increase" onclick="new_increase();"   style="border: 1px solid transparent;margin-right: 36px;">新增</button>
+                <button class="btn btn_gray"  id="btn_unbind">解绑选中</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/template" id="pop_layer">
+    <div class="pop_layer_header">
+        <h2 id="virtual_port_pop_tip">{{virtual_port_pop_tip}}</h2>
+        <a href="javascript:void(0);" class="modal_close" onclick="hide_pop_layer('port_map_pop_layer');">×</a>
+    </div>
+    <div class="app-box">
+        <form name="virtual_service_frm" id='virtual_service_frm' class="form-area" method="post" action="javascript:void(0);">
+            <div class="box-bd">
+                <table id="virtual_service_bind_tab" class="data-table">
+                    <thead><tr>
+                        <th class="th_0">{{service_name}}</th>
+                        <th class="th_1">{{host_ip}}</th>
+                        <th class="th_2">{{protocol}}</th>
+                        <th class="th_3">{{out_port}}</th>
+                        <th class="th_4">{{in_port}}</th>
+                    </tr></thead>
+                    <tbody><tr>
+                        <td><input name="name" id="virtual_name" type="text" class="input-text" maxlength="31" autocomplete="off"></td>
+                        <td><input name="in_ip" id="virtual_in_ip" type="text" class="input-text" maxlength="15" autocomplete="off"></td>
+                        <td> <select id="proto" name="protocol"></select></td>
+                        <td>
+                            <input class="input-text input-small" id="dest_port_a" type="text" size="5" maxlength="5" value="" name="isOut_start_port">
+                            <span style="padding:0 5px">-</span>
+                            <input class="input-text input-small" id="dest_port_b" type="text" size="5" maxlength="5" value="" name="isOut_end_port">
+                        </td>
+                        <td>
+                            <input class="input-text input-small" id="src_port_a" type="text" size="5" maxlength="5" value="" name="isIn_start_port">
+                            <span style="padding:0 5px">-</span>
+                            <input class="input-text input-small" id="src_port_b" type="text" size="5" maxlength="5" value="" name="isIn_end_port">
+                        </td>
+                    </tr></tbody>
+                </table>
+                <select id="uinames" class="off" name="uiname">
+                    <option value="ALL" selected="selected">ALL</option>
+                </select>
+                <input type="hidden" name="mode" value="0" id="action">
+                <div id="modify_hidevalue_box"></div>
+            </div>
+            <div class="opt">
+                <input type="submit" class="btn margin-r submit_btn btn_confirm" value={{save}}>
+                <input type="button" class="btn gray btn_cancel margin-h" value={{cancel}} onclick="hide_pop_layer('port_map_pop_layer');">
+            </div>
+        </form>
+    </div>
+</script>

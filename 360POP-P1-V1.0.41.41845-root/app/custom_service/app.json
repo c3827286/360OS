@@ -1,0 +1,22 @@
+{
+	"appsign":"custom_service",
+	"appname":"客服专区",
+	"version":"0.0.1",
+	"dep_version":"1.0.0",
+	"description":"",
+	"bin_start":"./custom_service_app",
+	"author":"蜂联科技",
+	"URL":"www.nowifi.cn",
+	"maintainer":"蜂联科技",
+	"email":"-",
+	"app_type":"local",
+	"icon":"./custom_service.png",
+	"rom_use":54,
+	"ram_use":902,
+	"start_reboot":"no",
+	"uninstall_reboot":"no",
+	"disable_reboot":"no",
+	"uninstall":"yes",
+	"disable":"yes",
+	"feature":""
+}

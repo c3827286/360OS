@@ -1,0 +1,125 @@
+<form id="net_auth_frm" action="javascript:void(0);">
+	<div id="w_cnt" style="padding-top:2%;">
+		<div class="text_wrap">
+			<label for="user" class="label_block">帐号：</label>
+			<div style="float:left;">
+				<input type="text" maxlength="31" id="user" class="txt" style="width: 200px;">
+			</div>
+		</div>
+		<div class="text_wrap">
+			<label for="pass" class="label_block">密码：</label>
+			<div  style="float:left;">
+				<input type="password" maxlength="31" id="pass" class="txt" style="width: 200px;">
+			</div>
+		</div>
+		<div class="text_wrap" style="margin-left:67px;">
+			<input type="checkbox" id="rem_usr_pass" checked="checked">
+			<label for="rem_usr_pass">记住帐号</label>
+		</div>
+	</div>
+	<div class="btn_layer">
+		<center>
+			<input type="button" class="nos_button" value="登 录" onclick="nos.app.Auth();">
+		</center>
+	</div>
+</form>
+<script type="text/javascript">
+//全局变量
+var reg_app_map = {
+	net_auth_frm:[
+		{id:"user",type:"string"},
+		{id:"pass",type:"password"}	
+	],
+	noneed:[]
+}
+
+var nos_pcip = "";
+var nos_url = "";
+var nos_err_css_str = ".MessageBox { position:absolute;background-position:bottom;background-position:left;background-image:url('./images/help_b1.gif');background-repeat:no-repeat;height:35px;z-index:5001; color:#333;}";
+nos_err_css_str += ".MessageBox_div { font-size: 12px;border: 1px solid #FFD700; background-color: #FFFFE1; color:#333;}";
+
+//注册函数
+if (typeof(nos)=='undefined' || nos==null) { var nos = {}; }
+nos.app = {};
+
+nos.app.addCss = function(css_str){
+	try { //IE
+		var style = document.createStyleSheet();
+		style.cssText = css_str;
+	}
+	catch (e) { //other
+		var style = document.createElement("style");
+		style.type = "text/css";
+		style.textContent = css_str;
+		document.getElementsByTagName("head").item(0).appendChild(style);
+	}
+}
+
+nos.app.Auth = function(){
+	if(!check_app_input("net_auth_frm"))
+		return;
+	var obj = {};
+	obj.user = $("#user").val();
+	obj.pass = $("#pass").val();
+	var temp = decodeURI(location.toString());
+	var temp_ip,temp_url;
+
+	var temp_arr = temp.split("?");
+	var param_str = "";
+	//分割丢弃第一段,如有其他问号则还原恢复
+	for(var i = 1; i < temp_arr.length; i++){
+		param_str += temp_arr[i]+"?";
+	}
+	param_str = param_str.substring(0,param_str.length-1);
+	
+	var param_arr = param_str.split("&");
+	for(var j = 0; j < param_arr.length; j++){
+		
+		if(param_arr[j].split("=")[0] == "pcip"){
+			nos_pcip = param_arr[j].split("=")[1];
+		}
+		if(param_arr[j].split("=")[0] == "url"){
+			nos_url = param_arr[j].split("=")[1];
+		}
+	}
+	obj.ip = nos_pcip;
+	$.post("../../l7_web_auth.cgi",obj,function(data){
+		try{
+			data=eval("("+data+")");
+			if(data == "SUCCESS")
+			{
+				alert("认证成功！");
+				if($("#rem_usr_pass").attr("checked")){
+					$.cookie( "c_name" ,  obj.user , { path: '/', expires: 365 });
+					$.cookie( "c_pwd" ,  obj.pass , { path: '/', expires: 365 });
+				}
+				else{
+					$.cookie('c_name',null,{ path: '/', expires: 1 });
+					$.cookie('c_pwd',null,{ path: '/', expires: 1 });
+				}	
+				  window.setTimeout("nos.app.AuthCheck('"+ nos_url +"');",1000);
+				
+	
+			}else{
+				alert(igd.make_err_msg(data));
+			}
+		}
+		catch(e){}
+	});
+
+}
+
+nos.app.AuthCheck = function(url){
+	location.href = url;
+}
+
+$("body").mousedown(function(){
+	var msgbox = new MessageBox();
+	if(msgbox){
+		msgbox.Hide();
+	}
+});
+
+nos.app.addCss(nos_err_css_str);
+
+</script>

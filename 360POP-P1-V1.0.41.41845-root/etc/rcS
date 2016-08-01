@@ -1,0 +1,186 @@
+#!/bin/sh
+DIRS=/var/tmp /var/run /var/ppp /var/udhcpc
+
+mount -t tmpfs -o size=18m tmpfs /var
+mount -t proc proc proc
+mount -t sysfs sysfs /sys
+mount -t devpts devpts /dev/pts
+
+#add for rtl8881AQ
+mount -t usbfs usbfs /proc/bus/usb
+
+cp -rd /etc /var/
+mount /var/etc /etc
+#cp /etc/Wireless/RT2860/RT2860.dat /var/
+#mount -t tmpfs tmpfs /etc/Wireless/RT2860/
+#cp /var/RT2860.dat /etc/Wireless/RT2860/
+
+cp -rf /cfg /var/
+rm -f /var/cfg/VERSION
+#cp -f /web/lua/cfg/* /var/
+mkdir /var/tmp
+mkdir /tmp/param
+mkdir /tmp/param/app_config
+mkdir /tmp/app
+mkdir /tmp/web/
+mkdir /var/parame
+mkdir /var/parame/brk
+mkdir /var/parame/parame
+mkdir /var/run
+mkdir /var/run/lock
+mkdir /var/dnrd
+mkdir /var/ppp
+mkdir /var/app
+
+#add by cy
+mkdir /tmp/plugin
+mkdir /tmp/plugin_loop
+mkdir /tmp/plugin_tmp
+mknod /tmp/ptmp_loop b 7 3
+mkdir /tmp/tmp_configs
+
+cp -f /sh/ppp/* /var/ppp
+#cp /web/cgi-bin/cgitest.cgi /var/tmp/
+mkdir /var/udhcpc
+> /etc/resolv.conf
+
+echo "/tmp/core-%e" > /proc/sys/kernel/core_pattern
+ulimit -c unlimited
+
+param_save load /var/parame/parame/param.tar.gzip
+#add by zhouqingwei for boot update
+cfeupdate
+apps=`ls /app`
+for _app in $apps
+do
+	[ ! -d /app/app_config/$_app  ] && mkdir /app/app_config/$_app
+	[ ! -f /app/app_config/$_app/config ] && cp /app/$_app/config /app/app_config/$_app/
+	[ -d /app/$_app -a ! -L /app/$_app ] && ln -s /app/$_app /var/app/$_app
+done
+
+cp -f /etc/VERSION /var/tmp/version_1
+#add for check hw setting
+flash test-hwconf
+if [ $? != 0 ]; then
+	echo 'HW configuration invalid, reset default!'
+	flash default
+fi
+ifconfig eth0 up
+ifconfig eth1 up
+ifconfig eth0 mtu 1500
+ifconfig eth1 mtu 1500
+
+vconfig add eth0 5
+vconfig add eth1 1
+vconfig add eth1 2
+vconfig add eth1 3
+vconfig add eth1 4
+
+#insmod /lib/modules/main.ko
+#setvlan 31 0 0 0 0
+
+ifconfig lo 127.0.0.1
+
+
+#ifconfig eth1.4001 hw ether 00:00:00:00:51:82
+ifconfig eth1.5 hw ether 00:00:00:00:51:82
+ifconfig eth0.1 hw ether 00:00:00:00:51:83
+ifconfig eth0.2 hw ether 00:00:00:00:51:84
+ifconfig wlan0 hw ether 00:00:00:00:51:85
+ifconfig wlan1 hw ether 00:00:00:00:51:86
+ifconfig wlan0-va0 hw ether 00:00:00:00:51:87
+ifconfig wlan0-va1 hw ether 00:00:00:00:51:88
+ifconfig wlan1-va0 hw ether 00:00:00:00:51:89
+ifconfig wlan1-va1 hw ether 00:00:00:00:51:90
+#ifconfig eth1.4005 hw ether 00:00:00:00:51:82
+#3052 have flash parameter
+#ifconfig eth1.4005 192.168.1.1 up
+#add by zqw for N300
+iwpriv wlan0 set_mib led_type=50
+iwpriv wlan0 set_mib regdomain=3
+ifconfig pppoe up
+ifconfig vir1 up
+ifconfig eth0.5 up
+brctl addbr br0
+brctl addif br0 eth0.5
+brctl addvlan br0 eth0.5 5
+brctl addif br0 wlan0
+brctl addvlan br0 wlan0 5
+brctl addif br0 wlan1
+brctl addvlan br0 wlan1 5
+brctl addif br0 wlan0-va0
+brctl addvlan br0 wlan0-va0 5
+brctl addif br0 wlan0-va1
+brctl addvlan br0 wlan0-va1 5
+brctl addif br0 wlan0-va2
+brctl addvlan br0 wlan0-va2 5
+brctl addif br0 wlan0-va3
+brctl addvlan br0 wlan0-va3 5
+
+# for multi pppd
+echo "add eth1.1 wan0-0 wan0-1 wan0-2 wan0-3" > /proc/PsExt/ctrl
+ifconfig wan0-0 up
+ifconfig wan0-1 up
+ifconfig wan0-2 up
+ifconfig wan0-3 up
+
+#HF Add
+#echo 1 > /proc/net/vlan/vlanEnable
+#echo 5 > /proc/net/vlan/groupIndex
+#echo 1,FFFEF,0,5> /proc/net/vlan/vlanGroup
+#echo 1 > /proc/net/vlan/groupIndex
+#echo 1,110,100,1> /proc/net/vlan/vlanGroup
+#echo 5,5,5,5,1,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5 > /proc/net/vlan/pvid
+#HF Add End
+#rtk
+echo 1 > /proc/net/vlan/vlanEnable
+echo 5 > /proc/net/vlan/groupIndex
+echo 1,FFFFE,0,5> /proc/net/vlan/vlanGroup
+echo 1 > /proc/net/vlan/groupIndex
+echo 1,101,100,1> /proc/net/vlan/vlanGroup
+echo 1,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5 > /proc/net/vlan/pvid
+#add by zhouqingwei
+echo 1 1 1 > /proc/qvlan_set
+#rtk end
+#brctl setfd br0 0
+#echo "add eth0.1 wan0-0 wan0-1 wan0-2 wan0-3" > /proc/PsExt/ctrl
+#ifconfig wan0-0 up
+#ifconfig wan0-1 up
+#ifconfig wan0-2 up
+#ifconfig wan0-3 up
+
+ifconfig br0 up
+brctl stp br0 off
+brctl setfd br0 0
+#add netif table for mac filter
+echo 2 > /proc/qvlan_set
+#add by zhouqingwei to disable fc in rtl8196d
+echo port 2 fc_off > /proc/rtl865x/port_status
+echo port 4 fc_off > /proc/rtl865x/port_status
+echo port 8 fc_off > /proc/rtl865x/port_status
+echo port 16 fc_off > /proc/rtl865x/port_status
+sh/init.sh
+#insmod /lib/modules/tntfs.ko
+#/bin/dev_msg &
+#impd
+#igdmptd & #run in switch
+#system led on
+echo pwron > /proc/gpio_test
+/bin/netled &
+
+echo 0 > /proc/igd_iptables
+[ -f /lib/modules/mitm.ko ] && insmod /lib/modules/mitm.ko
+
+echo 8192 > /proc/sys/vm/min_free_kbytes
+mknod /tmp/app_part b 31 9
+mknod /tmp/loop0 b 7 0
+mknod /tmp/loop1 b 7 1
+mknod /tmp/loop2 b 7 2
+
+check_default_by_start
+mkdir /tmp/cgroup
+mkdir /tmp/cgroup/cpu
+mkdir /tmp/cgroup/memory
+mount -t cgroup -o cpu cpu /tmp/cgroup/cpu
+mount -t cgroup -o memory memory /tmp/cgroup/memory
+restore_default &

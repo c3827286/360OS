@@ -1,0 +1,5 @@
+NEW_FEATURE:=upload_speed fault_detect ucallcgi app_store
+ANDROID_AV:=2.1.0.1077
+ANDROID_FU:=0
+IOS_AV:=2.1.8
+IOS_FU:=0

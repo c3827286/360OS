@@ -1,0 +1,5 @@
+编译打包工具：
+		tar xvzf mk.tar.gz
+		cd mk/squashfs4.2/squashfs-tools/
+		make(编译通过后mk/squashfs4.2/squashfs-tools/mksquashfs为打包工具)
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Hello,World!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="wbo" />
+<style type="text/css">
+body { margin:0; padding:0; font-family: "Hiragino Sans GB","Microsoft YaHei","微软雅黑",tahoma,arial,simsun,"黑体";}
+h1 { margin:0; padding:0; text-align:center; padding:140px 0 10px; font-size:50px; color:#428bef; }
+p { color:#333; font-size:16px; text-align:center; }
+</style>
+<script type="text/javascript" src="/javascript/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+var typing = {
+	init:function (elem,string,speed) {
+		this.elem = $("#" + elem);
+		this.str = string;
+		this.length = this.str.length;
+		this.speed  = speed ? speed : 100;
+		this.i = 0;
+	},
+	printf:function () {
+		var $this = this
+		return (function () {
+			if ($this.i > $this.length) {
+				if(Go)
+					window.clearTimeout(Go)
+				return false;
+			}
+			var char = $this.str;
+			$this.elem.append(char[$this.i])
+			$this.i++;
+			var Go = window.setTimeout(arguments.callee, $this.speed);
+		})
+	}
+};
+
+function Typing() {
+	this.init.apply(this, arguments)
+}
+Typing.prototype = typing;
+
+$(document).ready(function(){
+	var p = new Typing("txt","Hello,World!",200)
+	p.printf()();
+});
+</script>
+</head>
+<body>
+	<h1 id="txt"></h1>
+	<p>这是一个URL重定向功能的示例</p>
+</body>
+</html>

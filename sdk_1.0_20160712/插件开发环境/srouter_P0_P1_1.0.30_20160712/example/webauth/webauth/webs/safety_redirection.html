@@ -1,0 +1,312 @@
+<!doctype html>
+<!--[if lt IE 7 ]>
+<html class="ie6" lang="zh-cn"><![endif]-->
+<!--[if IE 7 ]>
+<html class="ie7" lang="zh-cn"><![endif]-->
+<!--[if IE 8 ]>
+<html class="ie8" lang="zh-cn"><![endif]-->
+<!--[if IE 9 ]>
+<html class="ie9" lang="zh-cn"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="w3c"><!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/default.css"/>
+    <style type="text/css">
+        body {
+            background: #333;
+            overflow-x: hidden
+        }
+
+        img {
+            border: 0;
+            vertical-align: middle;
+        }
+
+        label {
+            font-size: 12px;
+            color: #373536;
+        }
+
+        select, .txt {
+            padding: 2px 0;
+            width: 170px;
+        }
+
+        .form-area .form-label {
+            width: 40%;
+        }
+
+        .wrap .opt {
+            text-align: center;
+        }
+
+        .wrap {
+            position: relative;
+            width: 700px;
+            height: 370px;
+            background: #FFFFFF;
+            margin: 30px auto;
+            border-radius: 3px;
+            -moz-box-shadow: 3px 3px 20px #333;
+            box-shadow: 3px 3px 20px #333;
+            border: 1px #177AE0 solid;
+        }
+
+        .m-wrap .form-area .form-label {
+            width: 35%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .m-wrap .form-area .input-text {
+            width: 150px;
+        }
+
+        .m-wrap .opt {
+            padding: 10px 0;
+            text-align: center;
+        }
+        .pc{
+            margin-top: 30px;
+        }
+        .pc .form-error {
+            visibility: hidden;
+            color: #f00;
+        }
+
+        .mobile .form-error {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #f00;
+            visibility: hidden;
+        }
+
+        .title {
+            background: #428bef;
+            line-height: 60px;
+            height: 60px;
+            text-align: center;
+            color:#fff;
+            font-weight:bold;
+            text-shadow:0 1px 0 rgba(0,0,0,0.3);
+        }
+
+        .title_web{
+            font-size:18px;
+        }
+        #authing {
+            display: none;
+            position: absolute;
+            left: 25%;
+            top: 215px;
+            width: 50%;
+            height: 120px;
+            text-align: center;
+            line-height: 120px;
+            color: #fff;
+        }
+
+        #no_failure .form-area .input-text {
+            width: 200px;
+            height: 16px;
+            padding: 8px;
+            border: 1px solid #d8d8d8;
+            border-radius: 0;
+            line-height: 14px;
+            font-size: 14px;
+        }
+    </style>
+    <script type="text/javascript" src="/javascript/module.js"></script>
+    <script type="text/javascript" src="/app_common/init.js"></script>
+    <script type="text/javascript" src="/javascript/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/javascript/new_lib.js"></script>
+    <script type="text/javascript" src="/javascript/aes.js"></script>
+    <script type="text/javascript" src="/javascript/err.js"></script>
+    <script type="text/javascript" src="/javascript/cookie.js"></script>
+    <script type="text/javascript" src="/app_common/app_ctrl/js/language_CN_app.js"></script>
+    <script type="text/javascript" src="/app_common/app_ctrl/js/app_lib.js"></script>
+    <script type="text/javascript" src="./js/md5.js"></script>
+</head>
+<body>
+<script type="text/template" id="pc-web">
+    <div class="wrap">
+        <div class="title title_web">360安全路由</div>
+        <div class="pc" id="no_failure">
+            <form action="javascript:void(0);" id="auth_form" name="auth_form">
+                <div class="form-area">
+                    <div class="item">
+                        <label for="username" class="form-label">用户名：</label>
+                        <input type="text" id="username"  class="input-text">
+                    </div>
+                    <div class="item">
+                        <label for="passwd" class="form-label">密码：</label>
+                        <input type="password" maxlength="31" id="passwd"  class="input-text" autocomplete="off">
+                        <span class="form-error"></span>
+                    </div>
+                    <div id="authing">认证中...</div>
+                    <div class="item">
+                        <label  class="form-label"></label>
+                        <input type="checkbox" id="rem_answer" checked="checked"><label for="rem_answer" id="rem_answerTxt">记住用户名</label>
+                    </div>
+                </div>
+                <div id="submitBut" class="opt">
+                    <input id="confirm_btn" type="submit" class="btn" value="确认"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="m-web">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            background:#fff;
+        }
+    </style>
+    <div class="m-wrap mobile">
+        <div class="title">360安全路由</div>
+        <div class="form-error"></div>
+        <form action="javascript:void(0);" id="auth_form" name="auth_form">
+            <div class="m-content form-area" id="no_failure">
+                <div class="item">
+                    <label for="username" class="form-label">用户名：</label>
+                    <input type="text" id="username" class="input-text">
+                </div>
+                <div class="item">
+                    <label for="username" class="form-label">密码：</label>
+                    <input type="password" maxlength="31" id="passwd" class="input-text"  autocomplete="off"/>
+                </div>
+                <div class="item">
+                    <label  class="form-label"></label>
+                    <input type="checkbox" id="rem_answer" checked="checked"><label for="rem_answer" id="rem_answerTxt">记住用户名</label>
+                </div>
+            </div>
+            <div id="submitBut" class="opt">
+                <input id="confirm_btn" type="submit" class="btn" value="确认"/>
+            </div>
+        </form>
+    </div>
+    <div id="authing">认证中...</div>
+</script>
+<script>
+    (function () {
+        var me;
+        var portal={
+            param:{},
+            error_tip:["用户名不能为空！","密码不能为空！"],
+            auth_tip: ["认证成功！", "认证失败！"],
+            key:"12345678",
+            init: function () {
+                me=this;
+                me.getPostValue();
+                me.bind_event();
+                if($.cookie("username")){
+                    $("#username").val($.cookie("username"));
+                }
+            },
+            bind_event: function () {
+                $("#passwd").off("focus").on("focus", function () {
+                    $('.form-error').css('visibility', 'hidden');
+                });
+                $("#confirm_btn").off("click").on("click", function () {
+                    me.auth();
+                });
+            },
+            getPostValue:function(){
+                var temp = decodeURI(location.toString());
+                var temp_str = temp.split("|");
+                var postValue = window.location.search.substr(1).split("&");
+                for (var s = 0; s < postValue.length; s++) {
+                    if (postValue[s].split("=")[0] == "pcip") {
+                        me.param.ip = postValue[s].split("=")[1];
+                    }
+                    if (postValue[s].split("=")[0] == "pcmac") {
+                        me.param.mac = postValue[s].split("=")[1];
+                    }
+                    if (postValue[s].substr(0, 3) == "url") {
+                        me.param.url = postValue[s].substr(4);
+                    }
+                }
+            },
+            auth: function () {
+                var obj={
+                    user:$("#username").val(),
+                    passwd:$("#passwd").val(),
+                    ip:me.param.ip,
+                    magic:Math.floor(Math.random()*10000)
+                };
+                var temp=obj.user+obj.passwd+obj.ip+obj.magic+me.key;
+                obj.md5=MD5(temp);
+                //判读输入是否为空
+                if(obj.user == "" || obj.passwd == ""){
+                    $('.form-error').css('visibility', 'visible').html(obj.passwd == ""?me.error_tip[1]:me.error_tip[0]);
+                    return;
+                }else{
+                    $('.form-error').css('visibility', 'hidden');
+                }
+                $.post("./auth_info_check.cgi",obj, function (data) {
+                    var data = dataDeal(data);
+                    if (data == "SUCCESS"){
+                        alert(me.auth_tip[0]);
+                        me.jump_url(me.param.url);
+                    }
+                    else
+                        alert(me.auth_tip[1]);
+                });
+                if ($("#rem_answer").attr("checked")) {
+                    $.cookie("username", obj.user, {path: '/', expires: 1});
+                }else{
+                    $.cookie("username", null, {path: '/', expires: 1});
+                }
+            },
+            jump_url: function (url) {
+                window.location.href = url;
+            }
+        };
+
+        //判断访问终端
+        var browser = {
+            versions: function () {
+                var u = navigator.userAgent,
+                        app = navigator.appVersion;
+                return {
+                    trident: u.indexOf('Trident') > -1, //IE内核
+                    presto: u.indexOf('Presto') > -1, //opera内核
+                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                    iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+                    symbian: u.indexOf('Symbian') > -1, //symbian
+                    mac: u.indexOf('Mac OS X') > -1, //Mac OS X
+                    linux: u.indexOf('Linux') > -1, //Linux
+                    ie6: u.indexOf('MSIE 6.0') > -1 //ie6
+                };
+            }(),
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        };
+
+        if (browser.versions.mobile || browser.versions.symbian) {
+            document.write(document.getElementById('m-web').innerHTML);
+        } else {
+            document.write(document.getElementById('pc-web').innerHTML);
+        }
+        portal.init();
+    })()
+
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+#!/bin/sh
+# udhcpc bound script
+. /sh/CFGFILE.sh
+. /sh/info.sh
+
+_wanid=$1
+
+[ -n "$broadcast" ] && BROADCAST="broadcast $broadcast"
+[ -n "$subnet" ] && NETMASK="netmask $subnet"
+
+$IFCONFIG $interface $ip $BROADCAST $NETMASK
+
+info_set info_wan${_wanid}_ifname $interface
+info_set info_wan${_wanid}_devname $interface
+info_set info_wan${_wanid}_ipaddr $ip
+info_set info_wan${_wanid}_netmask $subnet
+info_set info_wan${_wanid}_gw $router
+info_set info_wan${_wanid}_domain $domain
+i=1
+for _dns in $dns
+do
+	info_set info_wan${_wanid}_autodns${i} $_dns
+	((i++))
+done
+
+#zjx:以下信息用于页面输出
+DNSCFG=/var/cfg/cfg-dns${_wanid}
+info_get info_wan${_wanid}_dns1 dns1
+info_get info_wan${_wanid}_dns2 dns2
+info_get info_wan${_wanid}_autodns1 autodns1
+info_get info_wan${_wanid}_autodns2 autodns2
+echo "DNS1=$dns1" > $DNSCFG
+echo "DNS2=$dns2" >> $DNSCFG
+echo "AUTODNS1=$autodns1" >> $DNSCFG
+echo "AUTODNS2=$autodns2" >> $DNSCFG
+
+# zjx:以下信息用于页面输出
+WANINFO=/var/wan${_wanid}.info
+echo "WANIP=$ip" > $WANINFO
+echo "WANMASK=$subnet" >> $WANINFO
+echo "WANGW=$router" >> $WANINFO
+
+
+#if up events
+/sh/if_up.sh $_wanid
+
+exit 0
+
+

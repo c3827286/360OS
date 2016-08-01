@@ -1,0 +1,45 @@
+﻿<div class="autoclear">
+    <form id="mac_group_frm" name="mac_group_frm" method="post" action="" onsubmit="mac_group_submit();return false;">
+        <dl class="formstyle">
+            <dd>
+                <label for="mac_group_name" class="isneed"></label>
+                <input id="mac_group_name" type="text" maxlength="32" size="17" name="name" autocomplete="off">
+            </dd>
+            <dd class="autoclear">
+                <label for="mac_group_text" class="isneed"></label>
+                <div id="mac_group_wrap">
+                    <textarea id="mac_group_text" name="text" wrap="off" onkeyup="count_mac_group_items(this.value)" onchange="count_mac_group_items(this.value)" rows="8" style="width:300px;"></textarea>
+                    <div id="mac_group_foot"></div>
+                </div>
+                <div id="mac_group_tip">
+                    <ul>
+                        <li></li>
+						<li></li>
+                        <li class="eg">00-00-00-00-51-82</li>
+                        <li class="eg">00-00-00-00-51-83</li>
+                        <li class="eg">00-00-00-00-51-84</li>
+                    </ul>
+                </div>
+            </dd>
+            <dd class="formstyle_btn">
+                <input type="hidden" id="action" name="action" />
+                <input id="deal" type="hidden" value="add" />
+                <input id="old_id" name="id" type="hidden" />
+                <button id="save" type="submit"></button>&nbsp;&nbsp;
+                <button id="cancel" style="display:none;" type="button" onclick="load_app_page('mac_group','init_mac_group');"></button>
+            </dd>
+        </dl>
+    </form>
+</div>
+<div>
+    <dl class="formstyle">
+        <dt class="frame_head"></dt>
+        <dd>
+            <table id="mac_group_list" class="datatable">
+            </table>
+        </dd>
+        <dd class="formstyle_btn">
+            <button  class="button" type="button" onclick="mac_group_del_all();"></button>
+        </dd>
+    </dl>
+</div>

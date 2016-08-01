@@ -1,0 +1,50 @@
+﻿<div class="autoclear">
+    <form id="time_group_frm" name="time_group_frm" method="post" action="" onsubmit="time_group_submit();return false;">
+        <dl class="formstyle">
+            <dd>
+                <label for="time_group_name" class="isneed" id="timeGroupName"></label>
+                <input id="time_group_name" type="text" maxlength="64" size="17" name="name" autocomplete="off">
+            </dd>
+            <dd>
+                <label class="isneed" id="timeGroupType"></label>
+                <input type="radio" checked="checked" id="time_set_flag0" onClick="set_time_set_type(this.value);" value="0" name="time_type"/>
+                <label for="time_set_flag0" class="inline" id="weekSetTxt"></label>
+                <input type="radio" id="time_set_flag1" onClick="set_time_set_type(this.value);" value="1" name="time_type"/>
+                <label for="time_set_flag1" class="inline" id="daySetTxt"></label>
+                <input type="radio" id="time_set_flag2" onClick="set_time_set_type(this.value);" value="2" name="time_type"/>
+                <label for="time_set_flag2" class="inline" id="monthSetTxt"></label>
+                <input type="hidden" id="time_set_type" value="0" />
+            </dd>
+            <dd class="autoclear">
+                <label class="isneed" id="timeGroupSet"></label>
+                <div id="time_wrap" style="float: left">
+                </div>
+            </dd>
+            <dd>
+                <label id="addTimeGtxt"></label>
+                <span class="add_time_wrap">
+                   <img src="images/add.gif" id="addBtnImg" alt="" title="" onclick="add_time_quantum();" class="add_img_time" />
+                </span>
+            </dd>
+            <dd class="formstyle_btn">
+                <input type="hidden" id="action" name="action" />
+                <input id="deal" type="hidden" value="add" />
+                <input id="old_id" name="id" type="hidden" />
+                <button id="save" type="submit"></button>&nbsp;&nbsp;
+                <button id="cancel" style="display: none"  type="button"  onclick="refreshPage();"></button>
+            </dd>
+        </dl>
+    </form>
+</div>
+<div>
+    <dl class="formstyle">
+        <dt  id="frame_head"></dt>
+        <dd>
+            <table id="time_group_list" class="datatable">
+            </table>
+        </dd>
+        <dd class="formstyle_btn">
+            <button  class="button" type="button" id="delAllBtn" onclick="time_group_del_all();"></button>
+        </dd>
+    </dl>
+</div>

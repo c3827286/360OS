@@ -1,0 +1,24 @@
+介绍
+----------
+这是一个web认证的示例程序。管理员通过配置界面填写URL地址,则用户的访问会重定向到填写的URL,填写的URL需是Internet服务器上
+用户认证的页面。当认证成功之后，示例程序会撤销重定向，用户则可正常访问Internet。
+
+流程
+---------
+一、程序启动。
+    程序启动之后，读取保存的设置参数，根据参数值决定是否需要注册web认证的功能。接着等待接受CGI处理程序发送的消息。
+    
+二、管理员配置。
+    管理员通过配置界面的填写URL，URL需是Internet服务器上的用户认证页面。页面发送CGI请求(auth_info_set.cgi)，把数据传输给app
+处理函数(webauth_app.c中的auth_info_set函数)。此函数根据管理员的设置，设置或者撤销重定向，同时保存设置。重定向的URL附带的参
+数，包括ip、magic、用户原来访问的网址。相关的设置(register_http_ctrl)介绍及应用请参照NOS device application development guide.pdf
+和源码。重定向设置之后，需把URL注册到白名单，用户才可正常访问重定向的URL,需调用register_url_filter函数。无需路由器的web认证的
+CGI请求(auth_info_check.cgi)，则需调用register_noauth_url函数放行。具体应用请参照源码。
+
+三、用户认证。
+   管理员设置重定向成功以后，用户访问Internet都会重定向到指定的URL。用户需输入用户名及密码，进行用户认证。若认证成功,Internet
+服务器上相关处理程序(示例是通过网页做MD5加密计算)需把用户名、密码、ip、magic、私有密钥key组成的字符串使用MD5加密。再通过页面把
+用户名、密码、ip、magic、MD5加密数据发送CGI请求(auth_info_check.cgi)，把数据传输给app处理函数(webauth_app.c中的auth_info_check
+函数)。此函数通过传递的用户名、密码、ip、magic与私用的密钥key(需与服务器的私有密钥一致)组成的字符串使用MD5加密。加密得到的数据
+与传递的MD5加密数据进行比较，若一致则撤销重定向，跳转到用户原来访问的网址。撤销重定向调用http_ctrl_action函数，需传入用户主机的
+IP，即用户主机通过认证，可以正常访问Internet。具体应用请参照源码。

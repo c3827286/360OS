@@ -1,0 +1,69 @@
+#quicken_check{height: 486px;}
+p{text-align: center;font-size: 14px;color: #666666}
+#quicken_footer_tip{color: #999999;margin: 40px auto 80px;}
+.quicken_failure{color: #eb5f21;font-size: 16px;}
+.danger_tip{text-decoration: underline;}
+.quicken_status_logo{width: 245px;height: 245px;}
+.quicken_status_logo.quicken{background: url("./../images/quicken.jpg") no-repeat center transparent;margin:5px auto 40px;}
+.quicken_status_logo.failure{background: url("./../images/quickenFauilre.jpg") no-repeat center transparent;margin:15px auto 25px;}
+.quicken_status_logo.quickening{background: url("./../images/quickening.jpg")  no-repeat right  transparent;float: left;margin: 10px 30px 36px 0;width:45%;}
+#quickening_tip{overflow: hidden;padding-top: 50px;height: 245px;}
+.quickeningTip{font-size: 14px;color: #a1a1a1;padding-left:40px;line-height: 35px;}
+.tip_decoration{height: 40px;border-left:dashed 1px #ccc;margin-left: 14px;}
+.location{background: url("./../images/location.png") no-repeat left transparent;}
+.rocket{background: url("./../images/rocket.png") no-repeat left transparent;}
+.flag{background: url("./../images/flag.png") no-repeat left transparent;}
+.location.condition_loading{background: url("./../images/location.gif") no-repeat left transparent;font-size: 16px;color: #faa80c;}
+.rocket.condition_loading{background: url("./../images/rocket.gif") no-repeat left transparent;font-size: 16px;color: #faa80c;}
+.flag.condition_loading{background: url("./../images/flag.gif") no-repeat left transparent;font-size: 16px;color: #faa80c;}
+.location.check_suc,.rocket.check_suc,.flag.check_suc{background: url("./../images/suc.png") no-repeat left transparent;}
+.quicken_control{text-align: center;margin:0 auto;}
+.quicken_btn.quickening{background-color:#CCCCCC;}
+#quicken_result{position: relative;width: 600px;margin: 0 auto;}
+.quicken_result_tip{text-align: left;}
+.quicken_result_tip #quicken_time{color: #2eb4fa;padding: 0 5px;}
+.quicken_result_color{overflow: hidden;}
+.quicken_result_color span{display: block;float: left;}
+.result_color{display: block;width: 10px;height: 10px;margin-top: 4px;}
+.grey{background-color: #d5d5d5;}
+.blue{background-color: #2eb4fa;}
+.result_txt{color: #333333;font-size: 12px;padding: 0 22px 0 10px;}
+.quicken_result_chart{width: 600px;height: 240px;margin: 0 auto;position: relative;padding-bottom: 30px;}
+.chartFooter{color: #494949;font-size: 12px;padding-top: 12px;overflow: hidden;}
+.chartFooter span{display: block;width: 50%;text-align: center;float: left;}
+.section_line{border-left:dashed 1px #CCCCCC;position: absolute;height: 240px;left: 50%;top:40px;}
+.chart_decoration{width: 100%;height: 100%;}
+.chart_decoration li{width: 100%;border-bottom:dashed 1px #CCCCCC;padding-top: 50px;}
+.chart_decoration li.baseLine_chart{padding-top: 80px;}
+.chart_result_show{width: 100%;height: 240px;border-bottom: 1px #ccc solid;position: absolute;top: 0;}
+.chart_result_show li{float: left;width: 70px;height:100%;position: relative;font-size: 12px;color: #262626;text-align: center;}
+.chart_result_show .speedPer{width: 100%;position: absolute;bottom: 0;}
+.chart_result_show .speedVal{width:100%;position: absolute;left: 0;display: block;}
+.enhance_logo{background: url("./../images/up.png") no-repeat center 15px transparent;color: #faa80c;font-size: 14px;height: 45px;padding-top: 15px;position: absolute;width: 100%;}
+.quicken_result_btn{margin: 60px auto;}
+#reQuicken{margin-left: 155px;}
+#stopQuicken{margin-left: 60px;}
+.leftMargin{margin-left: 45px;}
+.rightMargin{margin-right: 45px;}
+.unknownSpeedResult{background: url("./../images/unknownSpeed.png") center no-repeat transparent;}
+.unknownSpeedResult *{display: none;}
+/* log */
+#quicken_log{position:  relative;}
+.log_timeLine{height: 100%;border-left: 2px solid #f0eeee;position: absolute;top: 0;left: 392px;z-index: -1;}
+#log_list{padding: 20px 0 1px;}
+#log_list li{overflow: hidden;padding-left: 32%;margin-bottom: 30px;}
+#log_list li.noLogList{overflow: hidden;text-align: center;padding: 0;}
+#log_list li.enhance_failure{background: url("./../images/status_3.png") no-repeat 375px 16px transparent;}
+#log_list li.enhance_half{background: url("./../images/status_2.png") no-repeat 375px 16px transparent;}
+#log_list li.enhance_fulfill{background: url("./../images/status_1.png") no-repeat 375px 16px transparent;}
+.time_line,.log_info{float:  left;text-align: left;}
+.time_line{width: 70px;text-align: right;margin-top: 13px;}
+.time_line .date{font-size: 12px;color: #666666;}
+.time_line .time{font-size: 12px;color: #999999;}
+.log_info{background: url("./../images/timeliness_arrow.png") no-repeat left 23px #fff;padding-left: 10px;margin-left: 65px;}
+.log_info h4{font-size: 14px;color: #333333;padding: 20px 50px 20px 20px;background: #f3f4f6;}
+.log_info p{font-size: 12px;color: #666666;padding: 0 50px 20px 20px;background: #f3f4f6;margin: 0;text-align: left;}
+#quicken_log_loading{text-align: center;}
+#quicken_log_loading *{vertical-align: middle;padding: 10px;}
+
+

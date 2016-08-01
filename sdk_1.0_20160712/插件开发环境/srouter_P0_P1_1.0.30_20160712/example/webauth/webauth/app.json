@@ -1,0 +1,17 @@
+{
+	"appsign":"webauth_example",
+	"appname":"web认证示例",
+	"version":"1.0.2",
+	"dep_version":"1.0.29",
+	"description":"web认证示例",
+	"bin_start":"./webauth_app",
+	"author":"360",
+	"URL":"luyouw.360.cn",
+	"maintainer":"360",
+	"email":"-",
+	"icon":"./webauth_example.png",
+	"configtype":2,
+	"app_type":"local",
+	"rom_use":20,
+	"ram_use":900
+}

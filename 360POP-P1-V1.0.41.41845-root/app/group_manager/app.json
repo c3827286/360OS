@@ -1,0 +1,21 @@
+{
+	"appsign":"group_manager",
+	"appname":"组编辑工具",
+	"version":"1.0.2",
+	"dep_version":"1.3.0",
+	"description":"<p>NOS 将用户、时间、URL、DNS这四类集合视为四类系统资源，本APP即用来编辑这些资源组。</p><p>1.用户组</p><p>用户组可以细分为MAC或者IP的集合。系统预留50个用户组，可以在应中直接使用这些组而无需配置。</p><p>  (1)全部用户组</p><p>  所有上网用户都属于该组。</p><p>  (2)MAC绑定用户组</p><p>  进行了IP、ARP协议源MAC地址绑定操作的用户</p><p>  (3)MAC未绑定用户组</p><p>  未进行IP、ARP协议源MAC地址绑定操作的用户</p><p>  (4)有线用户组</p><p>  通过有线接口连接到NOS的用户</p><p>  (5)无线用户组</p><p>  通过无线连接到NOS的用户</p><p>  (7)无线1组</p><p>  通过特定无线网络(SSID)连接到NOS的用户</p><p>  (8)无线2组</p><p>  同上</p><p>  (9)无线3组</p><p>  同上</p><p>(10)  无线4组</p><p>  同上</p><p>  (11)无线MAC绑定用户组</p><p>  通过无线连接且进行了IP、ARP协议源MAC地址绑定操作的用户</p><p>  (12)无线MAC未绑定用户组</p><p>  通过无线连接并且未进行IP、ARP协议源MAC地址绑定操作的用户</p><p>  (13)有线MAC绑定用户组</p><p>  通过有线连接并且进行了IP、ARP协议源MAC地址绑定操作的用户</p><p>  (14)有线MAC未绑定用户组</p><p>  通过有线连接并且未进行IP、ARP协议源MAC地址绑定操作的用户</p><p>  (15)PPPOE用户组</p><p>  通过NOS里PPPOE服务器接入的内网用户</p><p>  (16)PPTP用户组</p><p>  通过NOS里PPTP服务器接入的用户</p><p>  (17)L2TP用户组</p><p>  通过NOS里L2TP服务器接入的用户</p><p>2.时间组</p><p>时间段集合，每一个时间段是开始时间到结束时间。每一个时间组可以包含多个时间段。</p><p>3.DNS组</p><p>DNS域名集合</p><p>4.URL网络地址组。</p><p>由URL网络地址组成的集合。</p>",
+	"bin_start":"./igd_group_app",
+	"author":"蜂联科技",
+	"URL":"www.nowifi.cn",
+	"maintainer":"蜂联科技",
+	"email":"-",
+	"app_type":"local",
+	"icon":"./igd_group.png",
+	"rom_use":25,
+	"ram_use":1024,
+	"start_reboot":"no",
+	"uninstall_reboot":"no",
+	"disable_reboot":"no",
+	"uninstall":"yes",
+	"disable":"yes"
+}

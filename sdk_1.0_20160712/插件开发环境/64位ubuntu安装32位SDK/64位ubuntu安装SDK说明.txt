@@ -1,0 +1,10 @@
+第一步：
+把SDK压缩文件放置到某目录下，解压SDK压缩文件，执行命令：tar xvf srouter_P0_P1_1.0.29.tar.gz
+第二步：
+在解压目录中，找到脚本文件env-rtk.sh，执行命令：source env-rtk.sh
+第三步：
+安装32位兼容包，执行命令：apt-get install lib32zl
+第四步：
+把liblzma.so.5.0.0拷贝到linux的lib目录下，执行命令：ln -s lib/liblzma.so.5.0.0 /lib/liblzma.so.5
+第五步：
+把libgcc_s.so.1拷贝到linux的lib目录下

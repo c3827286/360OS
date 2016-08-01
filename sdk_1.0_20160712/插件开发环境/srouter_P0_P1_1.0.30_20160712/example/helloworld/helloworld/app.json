@@ -1,0 +1,17 @@
+{
+	"appsign":"helloworld",
+	"appname":"Hello,World!",
+	"version":"1.0.2",
+	"dep_version":"1.0.29",
+	"description":"Demo程序，任何内网用户访问任何网址将看到一次Hello,World!页面",
+	"bin_start":"./hello",
+	"author":"360",
+	"URL":"luyouw.360.cn",
+	"maintainer":"360",
+	"icon":"./helloworld.png",
+	"configtype":2,
+	"email":"",
+	"app_type":"local",
+	"rom_use":20,
+	"ram_use":800
+}

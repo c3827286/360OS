@@ -1,0 +1,38 @@
+#ifndef __IGD__PRODUCT__H__
+#define __IGD__PRODUCT__H__ 
+
+#define IGD_INTERFACE_WAN_NUM 1
+#define IGD_INTERFACE_WAN_VARNUM        0  // interface of wan variable Num 
+#define IGD_INTERFACE_WAN_ENABLE_NUM	1
+#define IGD_INTERFACE_LAN_PORT_NUM      4
+#define IGD_INTERFACE_LAN_NUM 1
+#define IGD_INTERFACE_LAN_PORTMASK 0x1e
+#define IGD_FILTER_HOST_MAX             256
+#define HOST_MX	IGD_FILTER_HOST_MAX
+#define IGD_FILTER_CONNECT_MAX	3000
+#define CONN_MX IGD_FILTER_CONNECT_MAX
+#define LAN_PORT_MASK IGD_INTERFACE_LAN_PORTMASK
+#define WAN1_PORT_ID 0
+#define PORT_NR_MX 5
+
+#define UGRP_MX 256
+#define TGRP_MX 256
+#define URLGRP_MX 256
+#define DNSGRP_MX 256
+#define WEB_AUTH_MX 512
+#define PPPOE_MX 512
+#define UGRP_PER_MX 1000
+#define TGRP_PER_MX 10
+#define URLGRP_PER_MX 1000
+#define DNSGRP_PER_MX 1000
+#define IGD_INTERFACE_WIRE_DEVNAME	"eth2.5"
+#define IGD_INTERFACE_LAN_IFNAME	"br0"
+#define IGD_INTERFACE_WAN1_IFNAME   	"eth2.1"
+#define IGD_INTERFACE_WAN2_IFNAME   	"eth2.2"
+#define IGD_INTERFACE_WAN3_IFNAME   	"eth2.3"
+#define IGD_INTERFACE_WAN4_IFNAME   	"eth2.4"
+#define IGD_INTERFACE_IFNAME "eth2."
+#define ACCOUNT_MX 1000
+#define PLATFORM_MTK
+
+#endif

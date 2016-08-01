@@ -1,0 +1,143 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html class="ie6" lang="zh-cn"><![endif]-->
+<!--[if IE 7 ]><html class="ie7" lang="zh-cn"><![endif]-->
+<!--[if IE 8 ]><html class="ie8" lang="zh-cn"><![endif]-->
+<!--[if IE 9 ]><html class="ie9" lang="zh-cn"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="w3c"><!--<![endif]-->
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/app_common/style.css" />
+    <script type="text/javascript" src="/app_common/init.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/default.css" />
+    <style>
+        .form-area .input-text{
+            width: 80px;
+        }
+        .form-area .item span{
+            margin-left: 10px;
+            color: #999;
+        }
+    </style>
+    <script type="text/javascript" src="/javascript/module.js"></script>
+    <script type="text/javascript" src="/javascript/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/javascript/jq.plugin.js"></script>
+    <script type="text/javascript" src="/javascript/err.js"></script>
+    <script type="text/javascript" src="/app_common/app_ctrl/js/language_CN_app.js"></script>
+    <script type="text/javascript" src="/app_common/app_ctrl/js/app_lib.js"></script>
+    <script type="text/javascript" src="js/qos_limit.js"></script>
+</head>
+<body>
+    <div id="app_page">
+        <div class="app-box">
+            <div class="box-hd">
+                <h3 class="box-title"></h3>
+            </div>
+            <div class="box-bd">
+                <form id="qos_limit_frm" class="form-area" name="qos_limit_frm" method="post" action="" onSubmit="qos_limit_ok();return false;">
+                    <div class="item">
+                        <label for="qos_up_limit_def" class="form-label"></label>
+                        <input id="qos_up_limit_def" class="input-text" name="qos_up_xianzhi_def" type="text" size="9"  maxlength="8" />
+                        <label class="inline" for="qos_down_limit_def">KB/s</label>
+                        <span class="speedTip"></span>
+                    </div>
+                    <div class="item">
+                        <label for="qos_down_limit_def" class="form-label"></label>
+                        <input id="qos_down_limit_def" class="input-text" name="qos_down_xianzhi_def" type="text" size="9" maxlength="8" />
+                        <label class="inline" for="qos_down_limit_def">KB/s</label>
+                        <span class="speedTip"></span>
+                    </div>
+                    <div class="item">
+                        <label for="qos_down_count_def" class="form-label"></label>
+                        <input id="qos_down_count_def" class="input-text" name="max_count" type="text" maxlength="8" size="9"/>
+                        <span class="speedTip"></span>
+                    </div>
+                    <div class="item opt">
+                        <button id="saveBtn"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="app-box">
+            <div class="box-hd">
+                <h3 class="box-title"></h3>
+            </div>
+            <div class="box-bd">
+                <form id="qos_limit_set_frm" class="form-area" name="qos_limit_set_frm" method="post"  onsubmit="qos_add();return false;">
+                    <input name="deal" id="deal" type="hidden" value="add" />
+                    <!--区别修改和添加-->
+                    <input name="old_id" id="old_id" type="hidden" />
+                    <!--end-->
+                    <div class="item">
+                        <label for="state" class="form-label"></label>
+                        <select id="state" name="enable">
+                            <option value="1" id="enableT"></option>
+                            <option value="0" id="enableF"></option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <label for="name" class="form-label"></label>
+                        <input id="name" type="text" maxlength="31" size="17" name="name" />
+                    </div>
+                    <div class="item">
+                        <label for="prio" class="form-label"></label>
+                        <input id="prio" type="text" maxlength="5" size="5" name="prio" />
+                        <span id="prioTip"></span>
+                    </div>
+                    <div id="lan_ip_layer_wrap"></div>
+                    <div class="item">
+                        <label class="form-label"></label>
+                        <label for="up_max_speed" class="inline uploadTxt" ></label>
+                        <input id="up_max_speed" name="up_max_speed" type="text" maxlength="6" size="8" value="0" />
+                        <label for="up_max_speed" class="inline">KB/s</label>
+                        <label for="down_max_speed" class="inline downloadTxt"></label>
+                        <input id="down_max_speed" name="down_max_speed" type="text" maxlength="6" size="8" value="0" />
+                        <label for="down_max_speed" class="inline">KB/s</label>
+                        <span class="speedTip"></span>
+                    </div>
+                    <div class="item">
+                        <label class="form-label"></label>
+                        <label for="up_share_speed" class="inline downloadTxt"></label>
+                        <input id="up_share_speed" name="up_share_speed" type="text" maxlength="6" size="8" value="0" />
+                        <label for="up_share_speed" class="inline">KB/s</label>
+                        <label for="down_share_speed" class="inline downloadTxt"></label>
+                        <input id="down_share_speed" name="down_share_speed" type="text" maxlength="6"  size="8" value="0" />
+                        <label for="down_share_speed" class="inline">KB/s</label>
+                        <span class="speedTip"></span>
+                    </div>
+                    <div class="item">
+                        <label for="max_count" class="form-label"></label>
+                        <input id="max_count" name="max_count" type="text" maxlength="8" size="9" value="0" />
+                        <span class="speedTip"></span>
+                    </div>
+                    <div id="time_segment_layer"></div>
+                    <div id="proto_port_wrap" class="off"></div>
+                    <!--高级设置-->
+                    <div class="item">
+                        <label  class="form-label"></label>
+                        <a class="default_link" href="javascript:void(0);" onClick="section_toggle();"></a>
+                    </div>
+
+                    <div class="item opt">
+                        <button id="save_button"  onclick="qos_add();return false;" ></button>
+                        &nbsp;&nbsp;
+                        <button id="cancel_button" style="display:none;" onClick="refresh_page();" ></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="app-box">
+            <div class="box-hd">
+                <h3 class="box-title"></h3>
+            </div>
+            <div class="box-bd">
+                <table id="qos_limit_set" class="data-table"></table>
+                <div class="opt">
+                    <button  class="button" type="button" id="delAllBtn" onClick="qos_del_all();"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

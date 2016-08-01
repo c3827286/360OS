@@ -1,0 +1,45 @@
+﻿<div class="autoclear">
+    <form id="url_group_frm" name="url_group_frm" method="post" action="" onsubmit="url_group_submit();return false;">
+        <dl class="formstyle">
+            <dd>
+                <label for="url_group_name" class="isneed" id="urlGroupName"></label>
+                <input id="url_group_name" type="text" maxlength="64" size="17" name="name" autocomplete="off">
+            </dd>
+            <dd class="autoclear">
+                <label for="url_group_text" class="isneed" id="urlGroupText"></label>
+                <div id="url_group_wrap">
+                    <textarea id="url_group_text" name="text" wrap="off" onkeyup="count_url_group_items(this.value)" onchange="count_url_group_items(this.value)" rows="8" style="width:300px;"></textarea>
+                    <div id="url_group_foot"></div>
+                </div>
+                <div id="url_group_tip">
+                    <ul>
+                        <li></li>
+						<li></li>
+                        <li class="eg">baidu</li>
+                        <li class="eg">sina</li>
+                        <li class="eg">qq</li>
+                    </ul>
+                </div>
+            </dd>
+            <dd class="formstyle_btn">
+                <input type="hidden" id="action" name="action" />
+                <input id="deal" type="hidden" value="add" />
+                <input id="old_id" name="id" type="hidden" />
+                <button id="save" type="submit"></button>&nbsp;&nbsp;
+                <button id="cancel" style="display: none"  type="button"  onclick="load_app_page('url_group','init_url_group');"></button>
+            </dd>
+        </dl>
+    </form>
+</div>
+<div>
+    <dl class="formstyle">
+        <dt id="frame_head"></dt>
+        <dd>
+            <table id="url_group_list" class="datatable">
+            </table>
+        </dd>
+        <dd class="formstyle_btn">
+            <button  class="button" type="button" id="delAllBtn" onclick="url_group_del_all();"></button>
+        </dd>
+    </dl>
+</div>

@@ -1,0 +1,9 @@
+.
+├── doc                         doc目录
+├── env-rtk.sh                    env脚本，需要首先执行
+├── example                     opk例子
+├── include                      头文件目录
+├── lib                          app库存放路径
+├── linux                        linux文件路径
+├── toolchain                    工具链
+└── utility                       工具存放路径

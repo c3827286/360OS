@@ -1,0 +1,46 @@
+<div id="quicken_check" class="off">
+    <p id="quicken_header_tip" class="quickened_tip off"></p>
+    <div class="quicken_status_logo quicken"></div>
+    <div id="quickening_tip" class="off">
+        <ul>
+            <li class="quickeningTip location condition_loading" id="location"></li>
+            <li class="tip_decoration"></li>
+            <li class="quickeningTip rocket"></li>
+            <li class="tip_decoration"></li>
+            <li class="quickeningTip flag"></li>
+        </ul>
+    </div>
+    <div class="quicken_control">
+        <button type="button" class="quicken_btn"></button>
+    </div>
+    <p id="quicken_footer_tip" class="quickened_tip"></p>
+</div>
+
+<div id="quicken_result"  class="off">
+    <p class="quicken_result_tip"></p>
+    <div class="quicken_result_color">
+        <span class="result_color grey"></span><span id="noQuicken" class="result_txt"></span><span class="result_color blue"></span><span id="quickened" class="result_txt"></span>
+    </div>
+    <div class="quicken_result_chart">
+        <ul class="chart_decoration">
+            <li class="baseLine_chart"></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="chart_result_show">
+            <li class="leftMargin"><span class="speedVal" id="noQuickened_up_speed"></span><div id="noQuickentUp_chart" class="speedPer grey"></div></li>
+            <li class="enhance_percent_section enhance_up_percent"><div id="upEnhance_chart" class="enhance_logo"><span id="up_speed_enhance_percent"></span></div></li>
+            <li class="rightMargin"><span class="speedVal" id="quickened_up_speed"></span><div id="quickenedUp_chart" class="speedPer blue"></div></li>
+            <li class="leftMargin"><span class="speedVal" id="noQuickened_down_speed"></span><div id="noQuickenDown_chart" class="speedPer grey"></div></li>
+            <li class="enhance_percent_section enhance_down_percent"><div id="downEnhance_chart" class="enhance_logo"><span id="down_speed_enhance_percent"></span></div></li>
+            <li class="rightMargin"><span class="speedVal" id="quickened_down_speed"></span><div id="quickenedDown_chart" class="speedPer blue"></div></li>
+        </ul>
+        <div class="section_line"></div>
+        <div class="chartFooter">
+            <span id="up_speed"></span><span class="down_speed"></span>
+        </div>
+    </div>
+    <div class="quicken_result_btn">
+        <button id="reQuicken"></button><button id="stopQuicken" class="grey"></button>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+#!/bin/sh
+SIGUSR1=USR1
+SIGUSR2=USR2

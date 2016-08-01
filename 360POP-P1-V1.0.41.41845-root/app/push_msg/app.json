@@ -1,0 +1,21 @@
+{
+	"appsign":"push_msg",
+	"appname":"消息PUSH",
+	"version":"0.0.3",
+	"dep_version":"1.3.140101",
+	"description":"push msg program",
+	"bin_start":"./push_msg_app",
+	"author":"qihoo",
+	"URL":"www.360.cn",
+	"maintainer":"qihoo",
+	"email":"",
+	"app_type":"local",
+	"icon":"./push_msg.png",
+	"rom_use":1000,
+	"ram_use":1000,
+	"start_reboot":"yes",
+	"uninstall_reboot":"no",
+	"disable_reboot":"yes",
+	"uninstall":"yes",
+	"disable":"yes"
+}

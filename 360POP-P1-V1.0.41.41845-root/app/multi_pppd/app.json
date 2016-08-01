@@ -1,0 +1,23 @@
+{
+	"appsign":"multi_pppd",
+	"appname":"单线多拨",
+	"version":"0.0.1",
+	"dep_version":"1.3.0",
+	"description":"一键点击，轻松加速，带宽翻倍",
+	"bin_start":"./multi_pppd",
+	"author":"matrix",
+	"URL":"-",
+	"maintainer":"matrix",
+	"email":"-",
+	"app_type":"local",
+	"icon":"./multidial.png",
+	"rom_use":30,
+	"ram_use":2500,
+	"start_reboot":"no",
+	"uninstall_reboot":"no",
+	"disable_reboot":"no",
+	"uninstall":"yes",
+	"disable":"yes",
+  "feature":"new_multi_pppd"
+}
+

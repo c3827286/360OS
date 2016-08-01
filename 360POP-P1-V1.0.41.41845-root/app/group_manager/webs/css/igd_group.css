@@ -1,0 +1,20 @@
+.datatable tr th,.datatable td{ text-align: center;}
+.datatable .paging{ text-align: left;}
+textarea{
+    resize: none;
+}
+
+#dns_group_wrap,#url_group_wrap,#mac_group_wrap,#ip_group_wrap{ float:left;}
+#dns_group_foot,#url_group_foot,#mac_group_foot,#ip_group_foot{ font-size:12px;}
+#dns_group_foot span,#url_group_foot span,#mac_group_foot span,#ip_group_foot span{ padding:0 3px; color:#444;}
+#dns_group_tip,#url_group_tip,#mac_group_tip,#ip_group_tip{ float:left; margin-left:15px; width:190px;}
+#dns_group_tip ul,#url_group_tip ul,#mac_group_tip ul,#ip_group_tip ul{ margin:0; padding:0; list-style-type:none;}
+#dns_group_tip ul li,#url_group_tip ul li,#mac_group_tip ul li,#ip_group_tip ul li{ margin:0; padding:0; list-style-type:none; font-size:12px; line-height:21px;}
+#dns_group_tip ul li.eg,#url_group_tip ul li.eg,#mac_group_tip ul li.eg,#ip_group_tip ul li.eg{ color:#3193D8; font-weight:bold;}
+
+img{cursor: pointer}
+.time_type{border: 1px dotted #3193D8;padding: 10px;}
+
+.add_time_wrap,.del_time_wrap{display: inline-block;position: relative;height: 30px;line-height: 30px;width: 100px;}
+.add_img_time{position: absolute;top:10px}
+.del_img_time{position: absolute;top:8px;left: 70px;}
